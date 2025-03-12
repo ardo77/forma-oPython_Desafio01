@@ -1,4 +1,4 @@
-##__Desafio 01__##
+## Desafio 01
 
 ## Introdução
 
@@ -18,11 +18,11 @@ Nesse desafio desenvolveremos uma agenda para salvar, editar, deletar e marcar u
 
 - A aplicação deve iniciar mostrando uma lista de opções do que é possível fazer com o app e permitir que o usuário digite uma escolha para iniciar a aplicação.
 - Deve ser possível adicionar um contato
-    - O contato pode ter os dados:
-    - Nome
-    - Telefone
-    - Email
-    - Favorito (está opção é para poder marcar um contato como favorito)
+  - O contato pode ter os dados:
+  - Nome
+  - Telefone
+  - Email
+  - Favorito (está opção é para poder marcar um contato como favorito)
 - Deve ser possível visualizar a lista de contatos cadastrados
 - Deve ser possível editar um contato
 - Deve ser possível marcar/desmarcar um contato como favorito
@@ -31,7 +31,7 @@ Nesse desafio desenvolveremos uma agenda para salvar, editar, deletar e marcar u
 
 ## Entrega
 
-Após concluir o desafio, você deve enviar a URL do seu código no GitHub para a plataforma. 
+Após concluir o desafio, você deve enviar a URL do seu código no GitHub para a plataforma.
 
 Além disso, que tal fazer um post no LinkedIn compartilhando o seu aprendizado e contando como foi a experiência?
 
