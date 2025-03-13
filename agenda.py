@@ -58,6 +58,26 @@ def marcar_desmarcar_contato_favorito(agenda: list, indice: int):
     return
 
 
+def listar_favoritos(agenda: list):
+    existe_favorito = False
+
+    for indice, contato in enumerate(agenda, start=1):
+        if contato["favorito"]:
+            nome = contato["nome"]
+            telefone = contato["telefone"]
+            email = contato["email"]
+            favorito = "★"
+
+            existe_favorito = True
+
+            print(f"| ID {indice}. [_{favorito}_] {nome}, {telefone}, {email}")
+
+    if not existe_favorito:
+        print("Não Contatos favoritos para listar.")
+
+    return
+
+
 agenda = []
 
 while True:
@@ -125,6 +145,8 @@ while True:
 
             elif opcao_escolhida == 5:
                 print("\n__Lista Contatos Favoritos__")
+                listar_favoritos(agenda)
+
             elif opcao_escolhida == 6:
                 print("\n__Apaga um Contato__")
             elif opcao_escolhida == 7:
