@@ -78,6 +78,13 @@ def listar_favoritos(agenda: list):
     return
 
 
+def apagar_contato(agenda: list, indice: int):
+    contato = agenda[indice]
+    agenda.remove(contato)
+
+    return
+
+
 agenda = []
 
 while True:
@@ -149,6 +156,20 @@ while True:
 
             elif opcao_escolhida == 6:
                 print("\n__Apaga um Contato__")
+                listar_contatos(agenda)
+                indice_contato = input("Informe o ID do contato a ser apagado: ")
+
+                try:
+                    indice_contato = int(indice_contato)
+                except Exception as e:
+                    print(f"Índice informado é inválido.\nErro: {e}")
+                else:
+                    if indice_contato < 1 or indice_contato > len(agenda):
+                        print("Índice informado é inexistente.")
+                    else:
+                        apagar_contato(agenda, (indice_contato - 1))
+                        print("Contato apgado com sucesso!")
+
             elif opcao_escolhida == 7:
                 break
 
