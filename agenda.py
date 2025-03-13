@@ -5,13 +5,12 @@ def cadastrar_contato(agenda: list):
     nome = input("Informe o Nome do Contato: ")
     telefone = input("Informe o Telefone de Contato: ")
     email = input("Informe o E-mail de Contato: ")
-    favorito = input("Este contato é favorito?(S/N): ")
 
     contato = {
         "nome": nome,
         "telefone": telefone,
         "email": email,
-        "favorito": (True if favorito == "S" else False),
+        "favorito": False,
     }
 
     agenda.append(contato)
@@ -19,14 +18,35 @@ def cadastrar_contato(agenda: list):
     return
 
 
-def listas_contatos(agenda: list):
+def listar_contatos(agenda: list):
     for indice, contato in enumerate(agenda, start=1):
         nome = contato["nome"]
         telefone = contato["telefone"]
         email = contato["email"]
-        favorito = "★" if contato["favorito"] else " "
+        favorito = "★" if contato["favorito"] else "_"
 
-        print(f"| Contato {indice}. [_{favorito}_] {nome}, {telefone}, {email}")
+        print(f"| ID {indice}. [_{favorito}_] {nome}, {telefone}, {email}")
+
+
+def editar_contato(agenda: list, indice: int):
+    print(f"Nome Atual: {agenda[indice]['nome']}")
+    novo_nome = input("Se desejar, informe o novo nome: ")
+
+    print(f"\nTelefone Atual: {agenda[indice]['telefone']}")
+    novo_telefone = input("Se desejar, informe o novo telefone: ")
+
+    print(f"\nE-mail Atual: {agenda[indice]['email']}")
+    novo_email = input("Se desejar, informe o novo e-mail: ")
+
+    agenda[indice]["nome"] = novo_nome if novo_nome != "" else agenda[indice]["nome"]
+    agenda[indice]["telefone"] = (
+        novo_telefone if novo_telefone != "" else agenda[indice]["telefone"]
+    )
+    agenda[indice]["email"] = (
+        novo_email if novo_email != "" else agenda[indice]["email"]
+    )
+
+    return
 
 
 agenda = []
@@ -55,11 +75,27 @@ while True:
                 print("\n__Cadastra um Contato__")
                 cadastrar_contato(agenda)
                 print("Contato gravado com sucesso!")
+
             elif opcao_escolhida == 2:
                 print("\n__Lista de Contatos__")
-                listas_contatos(agenda)
+                listar_contatos(agenda)
+
             elif opcao_escolhida == 3:
                 print("\n__Edita um Contato__")
+                listar_contatos(agenda)
+                indice_contato = input("Informe o ID do contato a ser editador: ")
+
+                try:
+                    indice_contato = int(indice_contato)
+                except Exception as e:
+                    print(f"Índice informado é inválido.\nErro: {e}")
+                else:
+                    if indice_contato < 1 or indice_contato > len(agenda):
+                        print("Índice informado é inexistente.")
+                    else:
+                        editar_contato(agenda, (indice_contato - 1))
+                        print("Contato atualizado com sucesso!")
+
             elif opcao_escolhida == 4:
                 print("\n__Marca ou Desmarca um Contato__")
             elif opcao_escolhida == 5:
