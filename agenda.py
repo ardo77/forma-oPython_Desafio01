@@ -1,3 +1,21 @@
+def cadastrar_contato(agenda: list):
+    nome = input("Informe o Nome do Contato: ")
+    telefone = input("Informe o Telefone de Contato: ")
+    email = input("Informe o E-mail de Contato: ")
+    favorito = input("Este contato é favorito?(S/N): ")
+
+    if favorito == "S":
+        favorito = True
+    else:
+        favorito = False
+
+    contato = {"nome": nome, "telefone": telefone, "email": email, "favorito": favorito}
+
+    agenda.append(contato)
+
+    return
+
+
 agenda = []
 
 while True:
@@ -22,6 +40,8 @@ while True:
         else:
             if opcao_escolhida == 1:
                 print("\n__Cadastra um Contato__")
+                cadastrar_contato(agenda)
+                print("Contato gravado com sucesso!")
             elif opcao_escolhida == 2:
                 print("\n__Lista Contatos")
             elif opcao_escolhida == 3:
