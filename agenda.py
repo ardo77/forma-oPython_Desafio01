@@ -1,6 +1,4 @@
-import email
-
-
+# Função para cadastrar contato.
 def cadastrar_contato(agenda: list):
     nome = input("Informe o Nome do Contato: ")
     telefone = input("Informe o Telefone de Contato: ")
@@ -18,6 +16,7 @@ def cadastrar_contato(agenda: list):
     return
 
 
+# Função para listar todos contatos.
 def listar_contatos(agenda: list):
     for indice, contato in enumerate(agenda, start=1):
         nome = contato["nome"]
@@ -28,6 +27,7 @@ def listar_contatos(agenda: list):
         print(f"| ID {indice}. [_{favorito}_] {nome}, {telefone}, {email}")
 
 
+# Função para editar os dados de um contato.
 def editar_contato(agenda: list, indice: int):
     print(f"Nome Atual: {agenda[indice]['nome']}")
     novo_nome = input("Se desejar, informe o novo nome: ")
@@ -49,6 +49,9 @@ def editar_contato(agenda: list, indice: int):
     return
 
 
+# Função para marcar ou desmarcar um contato como favorito.
+# Se o contato desejado não for favorito, ele será marcado como tal.
+# Caso o contato desejado seja favorito, ele será desmarcado.
 def marcar_desmarcar_contato_favorito(agenda: list, indice: int):
     if agenda[indice]["favorito"]:
         agenda[indice]["favorito"] = False
@@ -58,6 +61,8 @@ def marcar_desmarcar_contato_favorito(agenda: list, indice: int):
     return
 
 
+# Função que lista todos os contados favoritos.
+# Se não houve, será informado ao usuário.
 def listar_favoritos(agenda: list):
     existe_favorito = False
 
@@ -78,6 +83,7 @@ def listar_favoritos(agenda: list):
     return
 
 
+# Função para apagar um contato
 def apagar_contato(agenda: list, indice: int):
     contato = agenda[indice]
     agenda.remove(contato)
@@ -85,9 +91,15 @@ def apagar_contato(agenda: list, indice: int):
     return
 
 
+# Início do programa
+
+# Lista que conterá a todos os contados informados
 agenda = []
 
+# Loop (laço) que executará o programa,
+# até que opção 7 de sair seja informada.
 while True:
+    # Menu de opções apresentada ao usuário
     print("\n__Menu da Agenda__")
     print("1. Adicionar um Contato")
     print("2. Visualizar Contatos")
@@ -97,8 +109,10 @@ while True:
     print("6. Apagar um Contato")
     print("7. Sair")
 
+    # Solicitação da opção a ser informada pelo usuário
     opcao_escolhida = input("Informe o número da ação desejada: ")
 
+    # Tratará a exceção, se a opção informada é válida
     try:
         opcao_escolhida = int(opcao_escolhida)
     except Exception as e:
@@ -107,6 +121,8 @@ while True:
         if opcao_escolhida < 1 or opcao_escolhida > 7:
             print("Opção informada não corresponde as apresentadas.")
         else:
+            # Com a opção informada válida,
+            # executar a função referente a opção desejada
             if opcao_escolhida == 1:
                 print("\n__Cadastra um Contato__")
                 cadastrar_contato(agenda)
@@ -121,6 +137,7 @@ while True:
                 listar_contatos(agenda)
                 indice_contato = input("Informe o ID do contato a ser editado: ")
 
+                # Tratará a exceção, se o índice do contato é válido
                 try:
                     indice_contato = int(indice_contato)
                 except Exception as e:
@@ -139,6 +156,7 @@ while True:
                     "Informe o ID do contato a ser Marcado ou Desmarcado: "
                 )
 
+                # Tratará a exceção, se o índice do contato é válido
                 try:
                     indice_contato = int(indice_contato)
                 except Exception as e:
@@ -159,6 +177,7 @@ while True:
                 listar_contatos(agenda)
                 indice_contato = input("Informe o ID do contato a ser apagado: ")
 
+                # Tratará a exceção, se o índice do contato é válido
                 try:
                     indice_contato = int(indice_contato)
                 except Exception as e:
