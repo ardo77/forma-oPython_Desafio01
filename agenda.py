@@ -1,19 +1,32 @@
+import email
+
+
 def cadastrar_contato(agenda: list):
     nome = input("Informe o Nome do Contato: ")
     telefone = input("Informe o Telefone de Contato: ")
     email = input("Informe o E-mail de Contato: ")
     favorito = input("Este contato é favorito?(S/N): ")
 
-    if favorito == "S":
-        favorito = True
-    else:
-        favorito = False
-
-    contato = {"nome": nome, "telefone": telefone, "email": email, "favorito": favorito}
+    contato = {
+        "nome": nome,
+        "telefone": telefone,
+        "email": email,
+        "favorito": (True if favorito == "S" else False),
+    }
 
     agenda.append(contato)
 
     return
+
+
+def listas_contatos(agenda: list):
+    for indice, contato in enumerate(agenda, start=1):
+        nome = contato["nome"]
+        telefone = contato["telefone"]
+        email = contato["email"]
+        favorito = "★" if contato["favorito"] else " "
+
+        print(f"| Contato {indice}. [_{favorito}_] {nome}, {telefone}, {email}")
 
 
 agenda = []
@@ -43,15 +56,16 @@ while True:
                 cadastrar_contato(agenda)
                 print("Contato gravado com sucesso!")
             elif opcao_escolhida == 2:
-                print("\n__Lista Contatos")
+                print("\n__Lista de Contatos__")
+                listas_contatos(agenda)
             elif opcao_escolhida == 3:
-                print("\n__Edita um Contato")
+                print("\n__Edita um Contato__")
             elif opcao_escolhida == 4:
-                print("\n__Marca ou Desmarca um Contato")
+                print("\n__Marca ou Desmarca um Contato__")
             elif opcao_escolhida == 5:
-                print("\n__Lista Contatos Favoritos")
+                print("\n__Lista Contatos Favoritos__")
             elif opcao_escolhida == 6:
-                print("\n__Apaga um Contato")
+                print("\n__Apaga um Contato__")
             elif opcao_escolhida == 7:
                 break
 
