@@ -49,6 +49,15 @@ def editar_contato(agenda: list, indice: int):
     return
 
 
+def marcar_desmarcar_contato_favorito(agenda: list, indice: int):
+    if agenda[indice]["favorito"]:
+        agenda[indice]["favorito"] = False
+    else:
+        agenda[indice]["favorito"] = True
+
+    return
+
+
 agenda = []
 
 while True:
@@ -83,7 +92,7 @@ while True:
             elif opcao_escolhida == 3:
                 print("\n__Edita um Contato__")
                 listar_contatos(agenda)
-                indice_contato = input("Informe o ID do contato a ser editador: ")
+                indice_contato = input("Informe o ID do contato a ser editado: ")
 
                 try:
                     indice_contato = int(indice_contato)
@@ -98,6 +107,22 @@ while True:
 
             elif opcao_escolhida == 4:
                 print("\n__Marca ou Desmarca um Contato__")
+                listar_contatos(agenda)
+                indice_contato = input(
+                    "Informe o ID do contato a ser Marcado ou Desmarcado: "
+                )
+
+                try:
+                    indice_contato = int(indice_contato)
+                except Exception as e:
+                    print(f"Índice informado é inválido.\nErro: {e}")
+                else:
+                    if indice_contato < 1 or indice_contato > len(agenda):
+                        print("Índice informado é inexistente.")
+                    else:
+                        marcar_desmarcar_contato_favorito(agenda, (indice_contato - 1))
+                        print("Ação realizada com sucesso!")
+
             elif opcao_escolhida == 5:
                 print("\n__Lista Contatos Favoritos__")
             elif opcao_escolhida == 6:
